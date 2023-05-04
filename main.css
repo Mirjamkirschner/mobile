@@ -4,10 +4,17 @@
 
 body {
     font-family: "Open Sans", sans-serif;
+    padding: 0;
+    margin: 0;
 }
 
 a {
     color: black;
+}
+
+html, body, #map {
+    height: 100%;
+    width: 100vw;
 }
 
 main {
