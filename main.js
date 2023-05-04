@@ -24,12 +24,13 @@ map.locate({
 //Geolocation
 
 let circle = L.circle([0, 0], 0).addTo(map);
+let marker = L.marker([0, 0]).addTo(map);
 
 map.on('locationfound', function (evt) {
     let radius = Math.round(evt.accuracy);
 
-    L.marker(evt.latlng).addTo(map)
-        .bindTooltip(`You are within ${radius} meters from this point`).openTooltip();
+    marker.setLatLng(evt.latlng)
+    marker.bindTooltip(`You are within ${radius} meters from this point`).openTooltip();
 
     //L.circle(evt.latlng, radius).addTo(map);
     circle.setLatLng(evt.latlng);
