@@ -15,17 +15,25 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap'
 }).addTo(map);
 
-map.locate({setView: true, maxZoom: 16});
+map.locate({
+    setView: true, 
+    maxZoom: 16,
+    watch: true,
+});
 
 //Geolocation
+
+let circle = L.circle([0, 0], 0).addTo(map);
 
 map.on('locationfound', function (evt) {
     let radius = Math.round(evt.accuracy);
 
     L.marker(evt.latlng).addTo(map)
-        .bindPopup(`You are within ${radius} meters from this point`).openToolTip();
+        .bindTooltip(`You are within ${radius} meters from this point`).openTooltip();
 
-    L.circle(evt.latlng, radius).addTo(map);
+    //L.circle(evt.latlng, radius).addTo(map);
+    circle.setLatLng(evt.latlng);
+    circle.setRadius(radius);
 }
 );
 
