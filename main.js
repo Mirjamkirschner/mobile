@@ -23,7 +23,7 @@ map.on('locationfound', function (evt) {
     let radius = Math.round(evt.accuracy);
 
     L.marker(evt.latlng).addTo(map)
-        .bindPopup(`You are within ${radius} meters from this point`).openPopup();
+        .bindPopup(`You are within ${radius} meters from this point`).openToolTip();
 
     L.circle(evt.latlng, radius).addTo(map);
 }
